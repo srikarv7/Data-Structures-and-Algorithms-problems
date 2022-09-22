@@ -47,13 +47,19 @@ class Solution {
         int prefix_sum = 0;
         int solution = -1;
         // check if the pivot index is the first
-        for (int i = 1; i < nums.length; i++) {
-            prefix_sum = prefix_sum + nums[i - 1];
-            if (prefix_sum == sum - prefix_sum - nums[i]) {
-                solution = i;
-                break;
+
+        if (prefix_sum == sum - prefix_sum - nums[0]) {
+            solution = 0;
+            return solution;
+        } else {
+            for (int i = 1; i < nums.length; i++) {
+                prefix_sum = prefix_sum + nums[i - 1];
+                if (prefix_sum == sum - prefix_sum - nums[i]) {
+                    solution = i;
+                    break;
+                }
             }
+            return solution;
         }
-        return solution;
     }
 }
